@@ -6,6 +6,7 @@ $lokasi = $_FILES['foto']['tmp_name'];
 $tipe = $_FILES['foto']['type'];
 $ukuran = $_FILES['foto']['size'];
 
+$id = $_POST['id'];
 $nama = $_POST['nama'];
 $jk = $_POST['jk'];
 $tgl = $_POST['tanggal'];
@@ -15,13 +16,13 @@ $ket = $_POST['keterangan'];
 $error = "";
 
 if($foto == ""){
-    $query = "INSERT INTO pegawai SET ";
-    $query .= "foto = '$foto', ";
+    $query = "UPDATE pegawai SET ";
     $query .= "nama_pegawai = '$nama', ";
     $query .= "jenis_kelamin = '$jk', ";
     $query .= "tgl_lahir = '$tgl', ";
     $query .= "id_jabatan = '$id_jabatan', ";
-    $query .= "keterangan = '$ket'";
+    $query .= "keterangan = '$ket' ";
+    $query .= "WHERE id_pegawai = '$id'";
    
     $result = mysqli_query($con,$query);
 } else{
@@ -31,15 +32,26 @@ if($foto == ""){
         echo $ukuran;
         $error = "Ukuran file terlalu besar (lebih dari 1 MB)!";
     } else {
+
+        // Menghapus foto sebelumnya
+        $query = "SELECT * FROM pegawai WHERE id_pegawai = '$id'";
+        $result = mysqli_query($con,$query);
+        $data = mysqli_fetch_assoc($result);
+
+        if(file_exists("images/$data[foto]")) {
+            unlink("images/$data[foto]");
+        }
+
         move_uploaded_file($lokasi, "images/".$foto);
 
-        $query = "INSERT INTO pegawai SET ";
+        $query = "UPDATE pegawai SET ";
         $query .= "foto = '$foto', ";
         $query .= "nama_pegawai = '$nama', ";
         $query .= "jenis_kelamin = '$jk', ";
         $query .= "tgl_lahir = '$tgl', ";
         $query .= "id_jabatan = '$id_jabatan', ";
-        $query .= "keterangan = '$ket'";
+        $query .= "keterangan = '$ket' ";
+        $query .= "WHERE id_pegawai = '$id'";
 
         $result = mysqli_query($con,$query);
     }
@@ -47,9 +59,9 @@ if($foto == ""){
 
 if($error != ""){
     echo $error;
-    echo "<meta http-equiv='refresh' content='2; url=?hal=pegawai_tambah'>";
+    echo "<meta http-equiv='refresh' content='2; url=?hal=pegawai_edit'>";
 } elseif($query){
-    echo "Berhasil menambahkan data pegawai <b>$nama</b>";
+    echo "Berhasil memperbaharui data pegawai <b>$nama</b>";
     echo "<meta http-equiv='refresh' content='1; url=?hal=pegawai'>";
 } else {
     echo "Tidak dapat menyimpan data!<br>";
