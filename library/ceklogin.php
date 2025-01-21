@@ -1,11 +1,11 @@
 <?php
     session_start();
-    include "library/config.php";
+    include "config.php";
 
     $username = $_POST['username'];
-    $password = md5($_POST['password']);
+    $password = $_POST['password'];
 
-    $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
+    $query = "SELECT * FROM user WHERE username = '$username' && password = '$password'";
     $hasil = mysqli_query($con, $query);
     $data = mysqli_fetch_array($hasil);
     $jml = mysqli_num_rows($hasil);

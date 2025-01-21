@@ -2,7 +2,7 @@
     session_start();
     ob_start();
 
-    include "library/config.php";
+    include "config.php";
 
     if (empty($_SESSION['username']) OR empty($_SESSION['password'])) {
         echo "<p align='center'>Anda harus login terlebih dahulu!</p>";
@@ -28,16 +28,14 @@
      <div class="container">    
         <aside>
             <ul class="menu">
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="tabel-pegawai.html">Data Pegawai</a></li>
-                <li><a href="tabel-jabatan.html">Data Jabatan</a></li>
-                <li><a href="login.html">Keluar</a></li>  
+                <li><a href="?hal=dashboard">Dashboard</a></li>
+                <li><a href="?hal=pegawai">Data Pegawai</a></li>
+                <li><a href="?hal=jabatan">Data Jabatan</a></li>
+                <li><a href="logout.php">Keluar</a></li>  
             </ul>
         </aside>
         <section class="main">
                 <?php include "konten.php" ?>
-            <h1>Selamat Datang di Aplikasi Manajemen Pegawai</h1>
-            <h3>Anda Login sebagai Administrator</h3>
         </section>
     </div>
     <footer>
