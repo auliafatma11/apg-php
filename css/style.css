@@ -37,6 +37,7 @@ body{
     margin: 0 0 20px;
 }
 
+
 /* Mengatur agar tag input dan select memenuhi container dan tampilan lebih bagus */
 input, select{
     width: 100%;
@@ -185,7 +186,7 @@ footer{
     display: block;
     padding: 15px 0;
     float: left;
-    width: 30%;
+    width: 30%;     
     font-weight: bold;
 }
 

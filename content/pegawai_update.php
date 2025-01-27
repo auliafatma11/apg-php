@@ -41,11 +41,11 @@ if($foto == ""){
         if(file_exists("images/$data[foto]")) {
             unlink("images/$data[foto]");
         }
-
-        move_uploaded_file($lokasi, "images/".$foto);
+        $nama_foto = date('YmdHis')."-".$foto;
+        move_uploaded_file($lokasi, "images/".$nama_foto);
 
         $query = "UPDATE pegawai SET ";
-        $query .= "foto = '$foto', ";
+        $query .= "foto = '$nama_foto', ";
         $query .= "nama_pegawai = '$nama', ";
         $query .= "jenis_kelamin = '$jk', ";
         $query .= "tgl_lahir = '$tgl', ";
@@ -59,7 +59,7 @@ if($foto == ""){
 
 if($error != ""){
     echo $error;
-    echo "<meta http-equiv='refresh' content='2; url=?hal=pegawai_edit'>";
+    echo "<meta http-equiv='refresh' content='2; url=?hal=pegawai_edit&id=$id'>";
 } elseif($query){
     echo "Berhasil memperbaharui data pegawai <b>$nama</b>";
     echo "<meta http-equiv='refresh' content='1; url=?hal=pegawai'>";

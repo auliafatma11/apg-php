@@ -15,16 +15,16 @@ if(!defined('INDEX')) die("");
     </thead>
     <tbody>
         <?php
-        $query = "SELECT * FROM jabatan ORDER BY id_jabatan DECS";
+        $query = "SELECT * FROM jabatan ORDER BY id_jabatan DESC";
         $result = mysqli_query($con, $query);
         $no = 0;
-        while($data = mysqli_fetch_array($result)) {
+        while($data = mysqli_fetch_array($result)){
             $no++;
         ?>
 
             <tr>
                 <td> <?= $no ?> </td>
-                <td> <?= $data['jabatan'] ?> </td>
+                <td> <?= $data['nama_jabatan'] ?> </td>
                 <td>
                     <a href="?hal=jabatan_edit&id=<?= $data['id_jabatan'] ?> " class="tombol edit">Edit</a>
                     <a href="?hal=jabatan_hapus&id=<?= $data['id_jabatan'] ?> " class="tombol hapus">Hapus</a>

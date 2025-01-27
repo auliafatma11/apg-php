@@ -3,7 +3,7 @@ if(!defined('INDEX')) die("");
 ?>
 
 <h2 class="judul">Tambah Pegawai</h2>
-<form action="?hal=pegawai_insert" method="post" enctype="multipart/fotm-data">
+<form action="?hal=pegawai_insert" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="foto">Foto</label>
         <div class="input">
@@ -14,27 +14,27 @@ if(!defined('INDEX')) die("");
     <div class="form-group">
         <label for="nama">Nama</label>
         <div class="input">
-            <input type="text" name="nama" id="nama">
+            <input type="text" name="nama" id="nama" required>
         </div>
     </div>
 
     <div class="form-group">
         <label for="jk">Jenis Kelamin</label>
-        <input type="radio" name="jk" id="jk" value="L"> Laki-laki
-        <input type="radio" name="jk" id="jk" value="P"> Perempuan
+        <input type="radio" name="jk" id="jk" value="L" required> Laki-laki
+        <input type="radio" name="jk" id="jk" value="P" required> Perempuan
     </div>
 
     <div class="form-group">
         <label for="tanggal">Tanggal</label>
         <div class="input">
-            <input type="date" name="tanggal" id="tanggal">
+            <input type="date" name="tanggal" id="tanggal" required>
         </div>
     </div>
 
     <div class="form-group">
         <label for="jabatan">Jabatan</label>
         <div class="input">
-            <select name="jabatan" id="jabatan">
+            <select name="jabatan" id="jabatan" required>
                 <option value=""> - Pilih Jabatan - </option>
 <?php
 $query = "SELECT * FROM jabatan";

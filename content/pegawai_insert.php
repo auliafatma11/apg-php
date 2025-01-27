@@ -31,10 +31,11 @@ if($foto == ""){
         echo $ukuran;
         $error = "Ukuran file terlalu besar (lebih dari 1 MB)!";
     } else {
-        move_uploaded_file($lokasi, "images/".$foto);
+        $nama_foto = date('YmdHis')."-".$foto;
+        move_uploaded_file($lokasi, "images/".$nama_foto);
 
         $query = "INSERT INTO pegawai SET ";
-        $query .= "foto = '$foto', ";
+        $query .= "foto = '$nama_foto', ";
         $query .= "nama_pegawai = '$nama', ";
         $query .= "jenis_kelamin = '$jk', ";
         $query .= "tgl_lahir = '$tgl', ";
@@ -52,7 +53,7 @@ if($error != ""){
     echo "Berhasil menambahkan data pegawai <b>$nama</b>";
     echo "<meta http-equiv='refresh' content='1; url=?hal=pegawai'>";
 } else {
-    echo "Tidak dapat menyimpan data!<br>";
+    echo "Tidak dapat menyimpan data !<br>";
     echo mysqli_error();
 }
 ?>

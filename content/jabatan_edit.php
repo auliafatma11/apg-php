@@ -18,7 +18,7 @@ $data = mysqli_fetch_array($result);
     </div>
 
     <div class="form-group">
-        <input type="submit" value="Simpan" clas="tombol simpan">
-    <input type="reset" value="Reset" clas="tombol reset">
+        <input type="submit" value="Simpan" class="tombol simpan">
+    <input type="reset" value="Reset" class="tombol reset">
     </div>
 </form>

@@ -3,9 +3,9 @@
     include "library/config.php";
 
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $password = md5($_POST['password']);
 
-    $query = "SELECT * FROM user WHERE username = '$username' && password = '$password'";
+    $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password' ";
     $hasil = mysqli_query($con, $query);
     $data = mysqli_fetch_array($hasil);
     $jml = mysqli_num_rows($hasil);
